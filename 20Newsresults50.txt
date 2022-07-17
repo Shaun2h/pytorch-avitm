@@ -1,0 +1,69 @@
+Epoch 0, loss=762.723876953125
+Epoch 5, loss=656.4465942382812
+Epoch 10, loss=637.5056762695312
+Epoch 15, loss=627.4498291015625
+Epoch 20, loss=622.108154296875
+Epoch 25, loss=621.78369140625
+Epoch 30, loss=615.2047119140625
+Epoch 35, loss=614.8447875976562
+Epoch 40, loss=613.2366333007812
+Epoch 45, loss=610.3231811523438
+Epoch 50, loss=609.0248413085938
+Epoch 55, loss=609.212158203125
+Epoch 60, loss=604.1372680664062
+Epoch 65, loss=603.920166015625
+Epoch 70, loss=601.5670776367188
+Epoch 75, loss=599.2796020507812
+---------------Printing the Topics------------------
+[ annual green bhj mg miller rider wm oo buf ax ]
+[ jesus lord sin heaven eternal promise believe doctrine verse christ ]
+[ floor door burn tear building neighbor hospital immediately daughter toward ]
+[ shipping hus appreciate sale hello _eos_ speaker amiga wm setup ]
+[ sin witness eternal believe god christ waco christianity prayer remind ]
+[ anonymous abuse service privacy remark usenet imply mechanism cryptography posting ]
+[ helpful hello apple gateway ram bmw setup appreciate rf ford ]
+[ drive bio disk controller virtual jumper ide scsus hard bus ]
+[ deserve civilian sick hit ted bomb innocent belong hitter waco ]
+[ south georgia nuclear mountain island ship escape british foreign armenia ]
+[ wm mg ma sl tor nj oo ps mw cd ]
+[ waco cool damn crack andy _eos_ nsa re symptom remind ]
+[ budget cheaper treatment plant crypto fee nsa electronics suspect dollar ]
+[ palestinian arab israel israeli rights civilian lebanon territory civil state ]
+[ human drug abuse rights imply weapon illegal innocent legal waco ]
+[ screen ford setup problem spec connector ps greatly bug printer ]
+[ mg shipping hello wm appreciate que computing advance modem iii ]
+[ ice score career playoff player defensive stanley pen season ab ]
+[ enforcement conversation key ensure secure industry encryption agency security algorithm ]
+[ montreal stanley toronto detroit pittsburgh winnipeg mon chicago pen score ]
+[ accurate key msg waste spring gay crypto bunch weapon clipper ]
+[ mg tor motherboard ram stanley pd bhj wings wm connector ]
+[ transmission ford car ide scsus gear front rear bmw replace ]
+[ assault homicide handgun firearm knife director statistics former weapon violent ]
+[ remark length echo entry award int submit date section program ]
+[ score coach detroit wings playoff stanley montreal atlanta game season ]
+[ distribute data database contain foundation variety ray material contact journal ]
+[ andy spacecraft msg crypto wiretap clipper cheaper _eos_ amp nsa ]
+[ defend waco justify statement majority human arab sexual imply criminal ]
+[ ford gear stupid pain waco damn ted cycle clinton folk ]
+[ msg waco symptom food car sick pain gordon thread reaction ]
+[ root protocol resource mechanism xlib distribute converter xt toolkit default ]
+[ imply human innocent biblical arab ban legitimate society favor israel ]
+[ lead third goal wing brown club winner montreal mon penalty ]
+[ printf mirror winner int section exit remark buffer program io ]
+[ hit sick career predict offense worst deserve defensive catch injury ]
+[ daughter passage hang son massacre verse armenia jesus matthew burn ]
+[ escape armenia professor population territory greece turks border mountain council ]
+[ reveal exist surely explanation universe conclusion believe doctrine imply statement ]
+[ panel ground motor neutral slave rocket exception operate jumper trip ]
+[ secretary budget meeting president job stephanopoulos consideration visit opportunity economy ]
+[ funny sex weapon drug justify illegal damn waco innocent sexual ]
+[ nasa treatment remind complain symptom amount natural encourage compound clinton ]
+[ scsus ide isa gear drive internal spec ab ford bus ]
+[ jumper drive bio master hard track rom floppy sl feature ]
+[ health space impact nasa rocket cancer development spacecraft lunar km ]
+[ mg wm bhj hello parallel shipping compatible dos australia external ]
+[ appreciate ram screen greatly setup monitor hello windows problem hus ]
+[ screen ram crash gateway problem appreciate greatly configuration fine setup ]
+[ pray believe christianity catholic god human sin marry biblical statement ]
+---------------End of Topics------------------
+The approximated perplexity is:  982.6908279936666

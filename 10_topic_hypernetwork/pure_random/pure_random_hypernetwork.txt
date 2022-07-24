@@ -1,0 +1,269 @@
+Train:  {'charliehebdo': 0, 'ebola': 1, 'ferguson': 2, 'germanwings': 3, 'gurlitt': 4, 'ottawashooting': 5, 'prince': 6, 'putinmissing': 7, 'sydneysiege': 8}
+Test:  {'charliehebdo': 0, 'ebola': 1, 'ferguson': 2, 'germanwings': 3, 'gurlitt': 4, 'ottawashooting': 5, 'prince': 6, 'putinmissing': 7, 'sydneysiege': 8}
+Done loading Datasets
+Epoch 0, -Train- loss=1.1223829984664917
+Epoch:  0  Train completed. Took: 62.10843801498413  Seconds.
+Epoch 0, -Test- loss=1.0931950807571411
+Epoch:  0 Test completed. Took: 61.63899636268616  Seconds.
+Epoch:  1  Train completed. Took: 61.65696120262146  Seconds.
+Epoch:  1 Test completed. Took: 60.82081151008606  Seconds.
+Epoch:  2  Train completed. Took: 61.494879961013794  Seconds.
+Epoch:  2 Test completed. Took: 61.02092456817627  Seconds.
+Epoch:  3  Train completed. Took: 61.6864116191864  Seconds.
+Epoch:  3 Test completed. Took: 61.803582191467285  Seconds.
+Epoch:  4  Train completed. Took: 61.814866065979004  Seconds.
+Epoch:  4 Test completed. Took: 61.41205191612244  Seconds.
+Epoch 5, -Train- loss=0.9332982301712036
+Epoch:  5  Train completed. Took: 61.7577486038208  Seconds.
+Epoch 5, -Test- loss=0.9762195944786072
+Epoch:  5 Test completed. Took: 61.40639066696167  Seconds.
+Epoch:  6  Train completed. Took: 62.20972180366516  Seconds.
+Epoch:  6 Test completed. Took: 62.577614068984985  Seconds.
+Epoch:  7  Train completed. Took: 65.61086750030518  Seconds.
+Epoch:  7 Test completed. Took: 63.54222869873047  Seconds.
+Epoch:  8  Train completed. Took: 65.47422814369202  Seconds.
+Epoch:  8 Test completed. Took: 63.29672169685364  Seconds.
+Epoch:  9  Train completed. Took: 65.72754311561584  Seconds.
+Epoch:  9 Test completed. Took: 62.78226447105408  Seconds.
+Epoch 10, -Train- loss=0.8668472170829773
+Epoch:  10  Train completed. Took: 65.29934763908386  Seconds.
+Epoch 10, -Test- loss=0.9402129650115967
+Epoch:  10 Test completed. Took: 63.01328635215759  Seconds.
+Epoch:  11  Train completed. Took: 65.63041615486145  Seconds.
+Epoch:  11 Test completed. Took: 62.928398847579956  Seconds.
+Epoch:  12  Train completed. Took: 64.82889008522034  Seconds.
+Epoch:  12 Test completed. Took: 62.407376289367676  Seconds.
+Epoch:  13  Train completed. Took: 65.14379000663757  Seconds.
+Epoch:  13 Test completed. Took: 62.62567114830017  Seconds.
+Epoch:  14  Train completed. Took: 65.11859560012817  Seconds.
+Epoch:  14 Test completed. Took: 63.54765176773071  Seconds.
+Epoch 15, -Train- loss=0.839929461479187
+Epoch:  15  Train completed. Took: 64.80104517936707  Seconds.
+Epoch 15, -Test- loss=0.9254948496818542
+Epoch:  15 Test completed. Took: 61.07706165313721  Seconds.
+Epoch:  16  Train completed. Took: 64.83238291740417  Seconds.
+Epoch:  16 Test completed. Took: 63.21749544143677  Seconds.
+Epoch:  17  Train completed. Took: 64.71155548095703  Seconds.
+Epoch:  17 Test completed. Took: 62.55042815208435  Seconds.
+Epoch:  18  Train completed. Took: 64.57751941680908  Seconds.
+Epoch:  18 Test completed. Took: 63.29520869255066  Seconds.
+Epoch:  19  Train completed. Took: 65.39205193519592  Seconds.
+Epoch:  19 Test completed. Took: 63.75323486328125  Seconds.
+Epoch 20, -Train- loss=0.8266772627830505
+Epoch:  20  Train completed. Took: 64.16031098365784  Seconds.
+Epoch 20, -Test- loss=0.9202369451522827
+Epoch:  20 Test completed. Took: 63.504340171813965  Seconds.
+Epoch:  21  Train completed. Took: 63.71237277984619  Seconds.
+Epoch:  21 Test completed. Took: 63.44620609283447  Seconds.
+Epoch:  22  Train completed. Took: 64.39091658592224  Seconds.
+Epoch:  22 Test completed. Took: 63.655272006988525  Seconds.
+Epoch:  23  Train completed. Took: 63.69943952560425  Seconds.
+Epoch:  23 Test completed. Took: 63.530635356903076  Seconds.
+Epoch:  24  Train completed. Took: 63.358461141586304  Seconds.
+Epoch:  24 Test completed. Took: 63.682018995285034  Seconds.
+Epoch 25, -Train- loss=0.8173215985298157
+Epoch:  25  Train completed. Took: 64.54960751533508  Seconds.
+Epoch 25, -Test- loss=0.9162400364875793
+Epoch:  25 Test completed. Took: 63.47510504722595  Seconds.
+Epoch:  26  Train completed. Took: 64.79054689407349  Seconds.
+Epoch:  26 Test completed. Took: 61.7108051776886  Seconds.
+Epoch:  27  Train completed. Took: 64.98902440071106  Seconds.
+Epoch:  27 Test completed. Took: 63.281219244003296  Seconds.
+Epoch:  28  Train completed. Took: 63.86562156677246  Seconds.
+Epoch:  28 Test completed. Took: 62.79540681838989  Seconds.
+Epoch:  29  Train completed. Took: 63.853874921798706  Seconds.
+Epoch:  29 Test completed. Took: 62.683799266815186  Seconds.
+Epoch 30, -Train- loss=0.8104211688041687
+Epoch:  30  Train completed. Took: 63.426297664642334  Seconds.
+Epoch 30, -Test- loss=0.9099791646003723
+Epoch:  30 Test completed. Took: 63.18002414703369  Seconds.
+Epoch:  31  Train completed. Took: 63.199585914611816  Seconds.
+Epoch:  31 Test completed. Took: 62.575095653533936  Seconds.
+Epoch:  32  Train completed. Took: 63.43481636047363  Seconds.
+Epoch:  32 Test completed. Took: 62.37305307388306  Seconds.
+Epoch:  33  Train completed. Took: 63.116658449172974  Seconds.
+Epoch:  33 Test completed. Took: 62.66593813896179  Seconds.
+Epoch:  34  Train completed. Took: 62.74344992637634  Seconds.
+Epoch:  34 Test completed. Took: 63.02226424217224  Seconds.
+Epoch 35, -Train- loss=0.8047313094139099
+Epoch:  35  Train completed. Took: 65.2853627204895  Seconds.
+Epoch 35, -Test- loss=0.9102132320404053
+Epoch:  35 Test completed. Took: 62.78904414176941  Seconds.
+Epoch:  36  Train completed. Took: 63.542888164520264  Seconds.
+Epoch:  36 Test completed. Took: 63.72856116294861  Seconds.
+Epoch:  37  Train completed. Took: 63.97961688041687  Seconds.
+Epoch:  37 Test completed. Took: 63.214760065078735  Seconds.
+Epoch:  38  Train completed. Took: 63.848820209503174  Seconds.
+Epoch:  38 Test completed. Took: 63.837387561798096  Seconds.
+Epoch:  39  Train completed. Took: 63.47246980667114  Seconds.
+Epoch:  39 Test completed. Took: 62.89900064468384  Seconds.
+Epoch 40, -Train- loss=0.7987223863601685
+Epoch:  40  Train completed. Took: 63.542211294174194  Seconds.
+Epoch 40, -Test- loss=0.9054098129272461
+Epoch:  40 Test completed. Took: 62.25219678878784  Seconds.
+Epoch:  41  Train completed. Took: 64.26397800445557  Seconds.
+Epoch:  41 Test completed. Took: 61.871668100357056  Seconds.
+Epoch:  42  Train completed. Took: 64.31692385673523  Seconds.
+Epoch:  42 Test completed. Took: 62.52863430976868  Seconds.
+Epoch:  43  Train completed. Took: 63.831032276153564  Seconds.
+Epoch:  43 Test completed. Took: 62.96350836753845  Seconds.
+Epoch:  44  Train completed. Took: 63.69193768501282  Seconds.
+Epoch:  44 Test completed. Took: 63.15436816215515  Seconds.
+Epoch 45, -Train- loss=0.7960729002952576
+Epoch:  45  Train completed. Took: 67.57501554489136  Seconds.
+Epoch 45, -Test- loss=0.9052690863609314
+Epoch:  45 Test completed. Took: 58.832337856292725  Seconds.
+Epoch:  46  Train completed. Took: 73.1461033821106  Seconds.
+Epoch:  46 Test completed. Took: 64.51001691818237  Seconds.
+Epoch:  47  Train completed. Took: 79.79239344596863  Seconds.
+Epoch:  47 Test completed. Took: 62.04193305969238  Seconds.
+Epoch:  48  Train completed. Took: 80.38160181045532  Seconds.
+Epoch:  48 Test completed. Took: 65.88312578201294  Seconds.
+Epoch:  49  Train completed. Took: 82.67384171485901  Seconds.
+Epoch:  49 Test completed. Took: 59.884350061416626  Seconds.
+Epoch 50, -Train- loss=0.7926567196846008
+Epoch:  50  Train completed. Took: 67.31520390510559  Seconds.
+Epoch 50, -Test- loss=0.9051174521446228
+Epoch:  50 Test completed. Took: 66.17637062072754  Seconds.
+Epoch:  51  Train completed. Took: 75.26560115814209  Seconds.
+Epoch:  51 Test completed. Took: 60.02833580970764  Seconds.
+Epoch:  52  Train completed. Took: 81.88365626335144  Seconds.
+Epoch:  52 Test completed. Took: 62.56932711601257  Seconds.
+Epoch:  53  Train completed. Took: 73.74659943580627  Seconds.
+Epoch:  53 Test completed. Took: 65.74252438545227  Seconds.
+Epoch:  54  Train completed. Took: 79.98306798934937  Seconds.
+Epoch:  54 Test completed. Took: 63.783058643341064  Seconds.
+Epoch 55, -Train- loss=0.7873558402061462
+Epoch:  55  Train completed. Took: 78.0371823310852  Seconds.
+Epoch 55, -Test- loss=0.9002572894096375
+Epoch:  55 Test completed. Took: 64.8607530593872  Seconds.
+Epoch:  56  Train completed. Took: 79.72938466072083  Seconds.
+Epoch:  56 Test completed. Took: 63.90690755844116  Seconds.
+Epoch:  57  Train completed. Took: 81.42407846450806  Seconds.
+Epoch:  57 Test completed. Took: 68.75338530540466  Seconds.
+Epoch:  58  Train completed. Took: 83.02778100967407  Seconds.
+Epoch:  58 Test completed. Took: 65.91085743904114  Seconds.
+Epoch:  59  Train completed. Took: 82.4464807510376  Seconds.
+Epoch:  59 Test completed. Took: 65.05547142028809  Seconds.
+Epoch 60, -Train- loss=0.7803769707679749
+Epoch:  60  Train completed. Took: 81.64503836631775  Seconds.
+Epoch 60, -Test- loss=0.8959320187568665
+Epoch:  60 Test completed. Took: 65.21057868003845  Seconds.
+Epoch:  61  Train completed. Took: 73.41582918167114  Seconds.
+Epoch:  61 Test completed. Took: 60.25386118888855  Seconds.
+Epoch:  62  Train completed. Took: 105.15209436416626  Seconds.
+Epoch:  62 Test completed. Took: 66.24044013023376  Seconds.
+Epoch:  63  Train completed. Took: 75.78832364082336  Seconds.
+Epoch:  63 Test completed. Took: 62.99453330039978  Seconds.
+Epoch:  64  Train completed. Took: 63.99868965148926  Seconds.
+Epoch:  64 Test completed. Took: 63.76198935508728  Seconds.
+Epoch 65, -Train- loss=0.7834861874580383
+Epoch:  65  Train completed. Took: 63.77970862388611  Seconds.
+Epoch 65, -Test- loss=0.8992470502853394
+Epoch:  65 Test completed. Took: 63.03072953224182  Seconds.
+Epoch:  66  Train completed. Took: 63.77370643615723  Seconds.
+Epoch:  66 Test completed. Took: 62.95550036430359  Seconds.
+Epoch:  67  Train completed. Took: 63.717321157455444  Seconds.
+Epoch:  67 Test completed. Took: 64.00342321395874  Seconds.
+Epoch:  68  Train completed. Took: 63.76996397972107  Seconds.
+Epoch:  68 Test completed. Took: 63.95401072502136  Seconds.
+Epoch:  69  Train completed. Took: 63.7944917678833  Seconds.
+Epoch:  69 Test completed. Took: 63.05393433570862  Seconds.
+Epoch 70, -Train- loss=0.7824708223342896
+Epoch:  70  Train completed. Took: 63.94920539855957  Seconds.
+Epoch 70, -Test- loss=0.8987268209457397
+Epoch:  70 Test completed. Took: 63.52620196342468  Seconds.
+Epoch:  71  Train completed. Took: 63.85039019584656  Seconds.
+Epoch:  71 Test completed. Took: 63.93229365348816  Seconds.
+Epoch:  72  Train completed. Took: 63.65397047996521  Seconds.
+Epoch:  72 Test completed. Took: 62.917627811431885  Seconds.
+Epoch:  73  Train completed. Took: 63.547847509384155  Seconds.
+Epoch:  73 Test completed. Took: 62.925251483917236  Seconds.
+Epoch:  74  Train completed. Took: 63.39435601234436  Seconds.
+Epoch:  74 Test completed. Took: 62.78765559196472  Seconds.
+Epoch 75, -Train- loss=0.7811399698257446
+Epoch:  75  Train completed. Took: 63.22111630439758  Seconds.
+Epoch 75, -Test- loss=0.901574969291687
+Epoch:  75 Test completed. Took: 62.51194214820862  Seconds.
+Epoch:  76  Train completed. Took: 63.38095283508301  Seconds.
+Epoch:  76 Test completed. Took: 62.93791675567627  Seconds.
+Epoch:  77  Train completed. Took: 63.406609296798706  Seconds.
+Epoch:  77 Test completed. Took: 62.733181953430176  Seconds.
+Epoch:  78  Train completed. Took: 63.089049100875854  Seconds.
+Epoch:  78 Test completed. Took: 62.7836127281189  Seconds.
+Epoch:  79  Train completed. Took: 63.24301338195801  Seconds.
+Epoch:  79 Test completed. Took: 63.22349405288696  Seconds.
+Completed Training of  79 epochs. Took: 10444.165807962418  seconds.
+--------------------------------------------------
+charliehebdo  - Total loss 16347.8857421875  - Total Tweets in event Test:  19088  - Average Loss:  tensor(0.0003, device='cuda:0')
+ - Perplexity:  336.40105420889563
+ebola-essien  - Total loss 16347.8857421875  - Total Tweets in event Test:  97  - Average Loss:  tensor(0.0600, device='cuda:0')
+ - Perplexity:  337.03108649772327
+ferguson  - Total loss 16347.8857421875  - Total Tweets in event Test:  12274  - Average Loss:  tensor(0.0005, device='cuda:0')
+ - Perplexity:  335.90463565099003
+germanwings-crash  - Total loss 16347.8857421875  - Total Tweets in event Test:  2307  - Average Loss:  tensor(0.0025, device='cuda:0')
+ - Perplexity:  336.483032951218
+gurlitt  - Total loss 16347.8857421875  - Total Tweets in event Test:  100  - Average Loss:  tensor(0.0583, device='cuda:0')
+ - Perplexity:  340.4964700084226
+ottawashooting  - Total loss 16347.8857421875  - Total Tweets in event Test:  6776  - Average Loss:  tensor(0.0009, device='cuda:0')
+ - Perplexity:  335.614849742979
+prince-toronto  - Total loss 16347.8857421875  - Total Tweets in event Test:  437  - Average Loss:  tensor(0.0133, device='cuda:0')
+ - Perplexity:  336.27627952407494
+putinmissing  - Total loss 16347.8857421875  - Total Tweets in event Test:  457  - Average Loss:  tensor(0.0127, device='cuda:0')
+ - Perplexity:  337.240555320447
+sydneysiege  - Total loss 16347.8857421875  - Total Tweets in event Test:  11108  - Average Loss:  tensor(0.0005, device='cuda:0')
+ - Perplexity:  335.988576166785
+The total accumulated loss across all events was: tensor(371.5429)
+The total number of tweets tested Across all events was: 1351
+The approximated Average perplexity across all events is:  336.1158084501414
+--------------------------------------------------
+Overall Percentage Parent Child Match: 16.7 %
+Overall Correct Parent Child Match: 17470
+Overall Wrong Parent Child Match: 87112
+--------------------------------------------------
+Overall Correct in charliehebdo : 6176
+Overall Wrong in charliehebdo : 32092
+Overall Percentage Parent Child Match for charliehebdo : 16.14 %
+--------------------------------------------------
+Overall Correct in ebola-essien : 42
+Overall Wrong in ebola-essien : 184
+Overall Percentage Parent Child Match for ebola-essien : 18.58 %
+--------------------------------------------------
+Overall Correct in ferguson : 3545
+Overall Wrong in ferguson : 19858
+Overall Percentage Parent Child Match for ferguson : 15.15 %
+--------------------------------------------------
+Overall Correct in germanwings-crash : 905
+Overall Wrong in germanwings-crash : 3584
+Overall Percentage Parent Child Match for germanwings-crash : 20.16 %
+--------------------------------------------------
+Overall Correct in gurlitt : 142
+Overall Wrong in gurlitt : 37
+Overall Percentage Parent Child Match for gurlitt : 79.33 %
+--------------------------------------------------
+Overall Correct in ottawashooting : 2218
+Overall Wrong in ottawashooting : 10066
+Overall Percentage Parent Child Match for ottawashooting : 18.06 %
+--------------------------------------------------
+Overall Correct in prince-toronto : 316
+Overall Wrong in prince-toronto : 586
+Overall Percentage Parent Child Match for prince-toronto : 35.03 %
+--------------------------------------------------
+Overall Correct in putinmissing : 317
+Overall Wrong in putinmissing : 518
+Overall Percentage Parent Child Match for putinmissing : 37.96 %
+--------------------------------------------------
+Overall Correct in sydneysiege : 3809
+Overall Wrong in sydneysiege : 20187
+Overall Percentage Parent Child Match for sydneysiege : 15.87 %
+--------------------------------------------------
+Unpredicted Roots: []
+Cluster number: 8  Count: 11694
+Cluster number: 5  Count: 11599
+Cluster number: 6  Count: 11710
+Cluster number: 3  Count: 11480
+Cluster number: 0  Count: 11561
+Cluster number: 4  Count: 11754
+Cluster number: 7  Count: 11553
+Cluster number: 1  Count: 11526
+Cluster number: 2  Count: 11705

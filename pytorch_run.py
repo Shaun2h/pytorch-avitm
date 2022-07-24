@@ -8,6 +8,7 @@ import random
 import pickle
 import argparse
 import json
+import time
 import os
 import math
 import matplotlib.pyplot as plt
@@ -83,8 +84,36 @@ def make_data():
     return data_tr, data_te, tensor_tr, tensor_te, vocab, vocab_size
 
 
+def force_topic_number(encoder_tokenizer,dataloader,settings,preset_number):
 
-def train(encoder_tokenizer,dataloader,backprop,settings,descriptor,model_namer,dosave=True):
+    grad_decider = torch.no_grad
+    model.eval()
+
+        # print("No Grad.")
+    with grad_decider():
+        # all_indices = torch.randperm(tensor_tr.size(0)).split(settings["batch_size"])
+        loss_epoch = 0.0
+        for _,(tokenized_data,label,idlist,raw_data) in enumerate(dataloader):
+            # torch.set_printoptions(threshold=100000)
+            # print(tokenized_data[0])
+            # print(tokenized_data[0].shape)
+            # print(torch.sum(tokenized_data[0],1))
+            # batch_indices = batch_indices.to(settings["device"]) # i'm not sure why this is needed in the original code.
+            # print(batch_indices)
+            
+            input_data = Variable(tokenized_data).to(settings["device"])
+            if type(model)==Hypernet_LDA_RNN:
+                recon, loss, _ = model(input_data, num_topic=preset_number,compute_loss=True)
+            else:
+                recon, loss, _ = model(input_data, compute_loss=True)
+
+            # optimize if applicable
+            # report
+            loss_epoch += loss.data[0]    # add loss to loss_epoch
+            return
+
+
+def train(encoder_tokenizer,dataloader,backprop,settings,descriptor,model_namer,dosave=True,do_class_entropy=False,CE_multiplier=0.2):
     
     class nothing: # do... nothing with a with statement.
         def __init__(self):
@@ -93,7 +122,8 @@ def train(encoder_tokenizer,dataloader,backprop,settings,descriptor,model_namer,
             pass
         def __exit__(self, exception_type, exception_value, traceback):
             pass
-    
+    if do_class_entropy:
+        CE_Loss = torch.nn.CrossEntropyLoss()
     if backprop:
         grad_decider = nothing
         # print("Using Grad")
@@ -121,10 +151,15 @@ def train(encoder_tokenizer,dataloader,backprop,settings,descriptor,model_namer,
                 recon, loss, _ = model(input_data, num_topic=random.randint(4,settings["num_topic"]),compute_loss=True)
             else:
                 recon, loss, _ = model(input_data, compute_loss=True)
-            
+                
+            if do_class_entropy and type(model)==Hypernet_LDA_RNN:
+                _, _, class_probs = model(input_data, num_topic=10,compute_loss=True)
+                ce_results = CE_Loss(class_probs,label) * CE_multiplier
             # optimize if applicable
             if backprop:
                 loss.backward()             # backprop
+                if do_class_entropy:
+                    ce_results.backward()
                 optimizer.step()            # update parameters
             # report
             loss_epoch += loss.data[0]    # add loss to loss_epoch
@@ -149,7 +184,7 @@ def print_top_words(beta, feature_names, n_top_words=50):
     outputstr += '---------------Printing the Topics------------------'
     outputstr += "\n"
     for i in range(len(beta)):
-        line = " ".join([feature_names[j] for j in beta[i].argsort()[:-n_top_words - 1:-1]])
+        line = " ".join([feature_names[j+1] for j in beta[i].argsort()[:-n_top_words - 1:-1]])
         topics = identify_topic_in_line(line)
         # print('\n\n'.join(topics))
         outputstr +=str(line.split())
@@ -158,13 +193,15 @@ def print_top_words(beta, feature_names, n_top_words=50):
     outputstr += "\n"
     return outputstr
 
-def print_perp(model,test_dataloader, verbose,num_topics=10):
+def print_perp(model,test_dataloader, verbose,num_topics=10,do_class_entropy=False):
     # oddly enough, the "counts" in the code we reference actually points at the input dimension's counts.
     cost=[]
     model.eval()                        # switch to testing mode
     losslist = []
     counts = 0       # we actually reference this in the event split with a proper explanation as to the ^512.
     clusterdicts = {}
+    # if do_class_entropy:
+        # CE_Loss = torch.nn.CrossEntropyLoss()
     with torch.no_grad():
         for _,(tokenized_data,label,idlist,raw_data) in enumerate(test_dataloader):
             input = Variable(tokenized_data)
@@ -174,6 +211,10 @@ def print_perp(model,test_dataloader, verbose,num_topics=10):
             else:
                 recon, loss, class_probs = model(input.to(settings_dict["device"]), compute_loss=True, avg_loss=False)
             _, selected_clusters = torch.max(class_probs,dim=1)
+            # if do_class_entropy:
+                # ce_results = CE_loss(class_probs,label)
+                # do what with this though?
+                
             # print(selected_clusters.shape)
             for specified_id in range(len(idlist)):
                 _, rootid, selfid = test_dataloader.dataset.backref(idlist[specified_id])
@@ -229,7 +270,7 @@ def print_perp_eventsplit(model,test_dataloader,eventnames, verbose):
                 loss_saver_event[reverseeventnames[str(rootid)]][0].append(loss.data/counts) # store the loss for this event.
                 loss_saver_event[reverseeventnames[str(rootid)]][1] = loss_saver_event[reverseeventnames[str(rootid)]][1] + 1 
                 
-                
+
             if loss!=None:
                 loss += loss.data
             else:
@@ -274,12 +315,12 @@ if __name__=='__main__':
     pheme_directory = "PHEME_DATASET"
     device = "cuda:0" if torch.cuda.is_available() else "cpu"
     
-    pure_random = False # 4th in line
+    pure_random = False
     event_splits = False # pick one. 
     timer_events_split = False
     timer_sequential = True
     
-    
+
     
     
     if int(pure_random)+int(event_splits)+ int(timer_events_split)+int(timer_sequential)>1:
@@ -306,11 +347,10 @@ if __name__=='__main__':
             event_indexes = json.load(dumpfile)
 
         
-        
     settings_dict = {
-        "inp_dim":1995,
-        "en1": 32,
-        "en2": 32,
+        "num_input":1995,
+        "en1": 100,
+        "en2": 100,
         "num_topic": 10,
         "init_mult": 1.0,
         "variance": 0.995,
@@ -318,9 +358,21 @@ if __name__=='__main__':
         "learning_rate":0.002,
         "momentum": 0.99,
         "device": device,
-        "num_epoch":20,
-        "batch_size":200
+        "num_epoch":80,
+        "batch_size":200,
+        "do_ce": False,
+        "ce_mult": 0.2
     }
+    
+        
+    inp_size = max(list({vocab[z]:z for z in vocab}.keys()))
+    settings_dict["num_input"] = inp_size - 1  # ignore PAD.
+    
+    # model = Hypernet_LDA(settings_dict)
+    # model = ProdLDA(settings_dict)
+    model = Hypernet_LDA_RNN(settings_dict,device)
+    
+    
     loaded_tweets, loaded_event_split, index_targets = load_and_arrange(os.path.join(pheme_directory,"complete_tweet_list.json"))
     labeldict = {'charliehebdo': 0, 'ebola': 1, 'ferguson': 2, 'germanwings': 3, 'gurlitt': 4, 'ottawashooting': 5, 'prince': 6, 'putinmissing': 7, 'sydneysiege': 8}
         
@@ -342,7 +394,7 @@ if __name__=='__main__':
             elif str(checked_tweet[-1]) in testidx:
                 testloads.append(checked_tweet)
                 
-                
+        # print(trainloads[1])        
         
         train_dataset = dataset_class_PHEME_direct(trainloads,labeldict,encoder_tokenizer, device,"Train: ")
         test_dataset = dataset_class_PHEME_direct(testloads,labeldict,encoder_tokenizer, device,"Test: ")
@@ -351,8 +403,27 @@ if __name__=='__main__':
 
 
         
-    elif event_splits:
+    # elif event_splits: # old version, kept for reference.
+        # overall_name = "Event_random_split"
+
+        # trainidx = []
+        # testidx = []
+        # for event in event_indexes:
+            # test_idx_event = event_indexes[event][int(len(event_indexes[event])/5*4):] # last 20%
+            # train_idx_event = event_indexes[event][:int(len(event_indexes[event])/5*4)] # first 80%
+            # trainidx.extend(train_idx_event)
+            # testidx.extend(test_idx_event)
         
+        # train_dataset = dataset_class_PHEME_root_only_tree_inp(trainidx, encoder_tokenizer, device, os.path.join(pheme_directory,"phemethreaddump.json"),"Train: ")
+        # test_dataset = dataset_class_PHEME_root_only_tree_inp(testidx, encoder_tokenizer, device, os.path.join(pheme_directory,"phemethreaddump.json"),"Test: ")
+        # print("Done loading Datasets")
+        # print(len(train_dataset))
+        # print(len(test_dataset))
+        # topwords_namer = "event_split_topwords.txt" # where to save topwords.
+    
+    elif event_splits:
+        overall_name = "Event_random_split"
+
         trainidx = []
         testidx = []
         for event in event_indexes:
@@ -361,15 +432,23 @@ if __name__=='__main__':
             trainidx.extend(train_idx_event)
             testidx.extend(test_idx_event)
         
-
-        train_dataset = dataset_class_PHEME_root_only_tree_inp(trainidx, encoder_tokenizer, device, os.path.join(pheme_directory,"phemethreaddump.json"),"Train: ")
-        test_dataset = dataset_class_PHEME_root_only_tree_inp(testidx, encoder_tokenizer, device, os.path.join(pheme_directory,"phemethreaddump.json"),"Test: ")
+        trainloads = []
+        testloads = []
+        for checked_tweet in loaded_tweets:
+            # print(checked_tweet)
+            if str(checked_tweet[-1]) in trainidx: # check the root tweet
+                trainloads.append(checked_tweet)
+            elif str(checked_tweet[-1]) in testidx:
+                testloads.append(checked_tweet)
+        
+        train_dataset = dataset_class_PHEME_direct(trainloads,labeldict,encoder_tokenizer, device,"Train: ")
+        test_dataset = dataset_class_PHEME_direct(testloads,labeldict,encoder_tokenizer, device,"Test: ")
         print("Done loading Datasets")
         topwords_namer = "event_split_topwords.txt" # where to save topwords.
-        
+    
         
     elif timer_events_split:
-        overall_name = "Event_Sequential_timed"
+        overall_name = "Timer_event_split"
         overalltrain_list = []
         overalltest_list = []
         for eventname in loaded_event_split:
@@ -389,11 +468,10 @@ if __name__=='__main__':
         
         train_dataset = dataset_class_PHEME_direct(loaded_tweets[:index_targets[0][1]],labeldict,encoder_tokenizer, device,"Train: ")
         test_dataset = dataset_class_PHEME_direct(loaded_tweets[index_targets[0][1]:],labeldict,encoder_tokenizer, device,"Test: ")
-        topwords_namer = "timer_mixed_topwords.txt" # where to save topwords.
+        topwords_namer = "timer_sequential_topwords.txt" # where to save topwords.
     
     
 
-    
     
     # encoder_model = BertModel.from_pretrained("bert-base-multilingual-uncased")
     
@@ -402,9 +480,7 @@ if __name__=='__main__':
     # pooler_output  = outputs.pooler_output 
     # settings_dict["num_input"]= data_tr.shape[1]
     # settings_dict["num_input"]= pooler_output.shape[1]
-    
-    inp_size = max(list({vocab[z]:z for z in vocab}.keys()))
-    settings_dict["num_input"] = inp_size - 1  # ignore PAD.
+
     
 
     with open(os.path.join(pheme_directory,"clusterlist.json"),"r",encoding="utf-8") as clusterfile:
@@ -420,26 +496,28 @@ if __name__=='__main__':
     
     train_dataloader = DataLoader(train_dataset, batch_size=settings_dict["batch_size"], shuffle=True, num_workers=0)
     test_dataloader = DataLoader(test_dataset, batch_size=settings_dict["batch_size"], shuffle=True, num_workers=0)    
-    # model = Hypernet_LDA(settings_dict)
-    # model = ProdLDA(settings_dict)
-    model = Hypernet_LDA_RNN(settings_dict,device)
+
 
     model = model.to(device)
     
     with open(os.path.join(pheme_directory,"Eventsplit_details.txt"),"r",encoding="utf-8") as roottweetfile:
         event_root_list = json.load(roottweetfile)
 
-
+    train_time = time.time()
     if settings_dict["optimizer"] == "Adam":
         optimizer = torch.optim.Adam(model.parameters(), settings_dict["learning_rate"], betas=(settings_dict["momentum"], 0.999))
     elif settings_dict["optimizer"] == "SGD":
         optimizer = torch.optim.SGD(model.parameters(), settings_dict["learning_rate"], momentum=settings_dict["momentum"])
     for epoch in range(settings_dict["num_epoch"]):
-        
-        train(encoder_tokenizer,train_dataloader,True,settings_dict,"-Train-",overall_name)
-        train(encoder_tokenizer,test_dataloader,False,settings_dict,"-Test-",overall_name,False) # don't save model this time. This is test.
-        break
-        
+        train_time_epoch = time.time()
+        train(encoder_tokenizer,train_dataloader,True,settings_dict,"-Train-",overall_name,True,settings_dict["do_ce"],settings_dict["ce_mult"])
+        print("Epoch: ",epoch," Train completed. Took:", time.time() - train_time_epoch, " Seconds.")
+        test_time_epoch = time.time()
+        train(encoder_tokenizer,test_dataloader,False,settings_dict,"-Test-",overall_name,False,settings_dict["do_ce"],settings_dict["ce_mult"]) # don't save model this time. This is test.
+        print("Epoch: ",epoch,"Test completed. Took:",time.time() - test_time_epoch, " Seconds.")
+    print("Completed Training of ", epoch, "epochs. Took:", time.time()-train_time," seconds.")
+    force_topic_number(encoder_tokenizer,test_dataloader,settings_dict,10)
+
     if type(model)==Hypernet_LDA_RNN:
         emb = model.decoderRNN_out_latest.data.cpu().numpy().T[:,1,:].reshape(-1,settings_dict["num_input"]) 
         # unlike the original, we customise the embed PER sample. as a result we have <input_size, batch_size,topic num>
@@ -451,15 +529,15 @@ if __name__=='__main__':
         emb = model.decoder.weight.data.cpu().numpy().T
         # print("Embed Shape:",emb.shape)
     outputstr = print_top_words(emb, list(zip(*sorted(vocab.items(), key=lambda x:x[1])))[0][1:])
-    with open(os.path.join(pheme_directory,topwords_namer),"w",encoding="utf-8") as topwordsdump:
+    with open(os.path.join(topwords_namer),"w",encoding="utf-8") as topwordsdump:
         topwordsdump.write(outputstr)
     
-    if pure_random:
-        tests_predictedclusters = print_perp(model, test_dataloader, verbose=True)
-        trains_predictedclusters = print_perp(model, train_dataloader, verbose=False)
-    elif event_splits or timer_events_split or timer_sequential:
-        tests_predictedclusters = print_perp_eventsplit(model, test_dataloader, event_indexes, verbose=True)
-        trains_predictedclusters = print_perp_eventsplit(model, train_dataloader, event_indexes, verbose=False)
+    # if pure_random:
+        # tests_predictedclusters = print_perp(model, test_dataloader, verbose=True)
+        # trains_predictedclusters = print_perp(model, train_dataloader, verbose=False)  # old version
+    # elif event_splits or timer_events_split or timer_sequential:
+    tests_predictedclusters = print_perp_eventsplit(model, test_dataloader, event_indexes, verbose=True)
+    trains_predictedclusters = print_perp_eventsplit(model, train_dataloader, event_indexes, verbose=False)
     
 
 
@@ -474,7 +552,7 @@ if __name__=='__main__':
     
     for event in event_root_list:
         event_comparison[event] = [0,0]
-        
+    
     touched_list = []
     unpredictedroots = []
     for tweetid in predictedclusters:
@@ -513,18 +591,28 @@ if __name__=='__main__':
             else:
                 event_comparison[source_event][1] = event_comparison[source_event][1] + 1 # event wise correct.
                 overall_wrong_count+=1 
-
+    with open(overall_name+"_predicted_clusters.txt","w",encoding="utf-8") as predictions:
+        json.dump(predictedclusters,predictions,indent=4)
+    cluster_spread_dict = {}
+    for item in predictedclusters:
+        if not predictedclusters[item] in cluster_spread_dict:
+            cluster_spread_dict[predictedclusters[item]] = 0
+        cluster_spread_dict[predictedclusters[item]] = cluster_spread_dict[predictedclusters[item]] + 1
+            
     # print(overall_correct_count,overall_wrong_count)
-    print("Overall Percentage Parent Child Match:", overall_correct_count/(overall_wrong_count+overall_correct_count))
+    print("Overall Percentage Parent Child Match:", round(overall_correct_count/(overall_wrong_count+overall_correct_count)*100,2),"%")
     print("Overall Correct Parent Child Match:",overall_correct_count)
     print("Overall Wrong Parent Child Match:",overall_wrong_count)
     print("-"*50)
     for event in event_comparison:
-        print("Overall Correct in", event,":", event_comparison[source_event][0])
-        print("Overall Wrong in", event,":", event_comparison[source_event][1])
-        print("Overall Percentage Parent Child Match for",event,":",event_comparison[source_event][0]/(event_comparison[source_event][0]+event_comparison[source_event][1]))
+        print("Overall Correct in", event,":", event_comparison[event][0])
+        print("Overall Wrong in", event,":", event_comparison[event][1])
+        print("Overall Percentage Parent Child Match for",event,":",round(event_comparison[event][0]/(event_comparison[event][0]+event_comparison[event][1])*100,2),"%")
         print("-"*50)
     print("Unpredicted Roots:",unpredictedroots)
     # visualize()
+    for item in cluster_spread_dict:
+        print("Cluster number:",item," Count:",cluster_spread_dict[item])
+
 
 

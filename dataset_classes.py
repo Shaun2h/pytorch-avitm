@@ -113,7 +113,7 @@ class dataset_class_PHEME_root_only_tree_inp(Dataset):
                 textlist=searcher[0]
                 break
         with torch.no_grad():
-            tokenized_data = self.tokenizer(textlist, return_tensors="pt", padding="max_length", truncation=True)
+            tokenized_data = self.tokenizer(textlist, return_tensors="pt", truncation=True)
             tokenized_data["input_ids"] = tokenized_data["input_ids"].squeeze()
             tokenized_data['token_type_ids'] = tokenized_data['token_type_ids'].squeeze()
             tokenized_data['attention_mask'] = tokenized_data['attention_mask'].squeeze()
@@ -121,7 +121,11 @@ class dataset_class_PHEME_root_only_tree_inp(Dataset):
         for i in tokenized_data["input_ids"]:
             returndat[i] = returndat[i] + 1
         # tokenized_data.to(self.device)
-        return returndat[:-1].to(self.device), self.labeldict[rootlabel[2]],idx, " ".join(textlist)
+        # print(self.labeldict[rootlabel[2]])
+        # print(idx)
+        # print("".join(textlist))
+        # input()
+        return returndat[1:].to(self.device), self.labeldict[rootlabel[2]],idx, "".join(textlist)
         
     def backref(self,idx):
         return self.allthreads[self.rootitems[idx]], self.rootitems[idx], self.allthreads[self.rootitems[idx]][-1]
@@ -155,15 +159,21 @@ class dataset_class_PHEME_direct(Dataset):
         # print(threadtextlist)      
         
         with torch.no_grad():
-            tokenized_data = self.tokenizer(text, return_tensors="pt", padding="max_length", truncation=True)
+            tokenized_data = self.tokenizer(text, return_tensors="pt", truncation=True)
             tokenized_data["input_ids"] = tokenized_data["input_ids"].squeeze()
             tokenized_data['token_type_ids'] = tokenized_data['token_type_ids'].squeeze()
             tokenized_data['attention_mask'] = tokenized_data['attention_mask'].squeeze()
         returndat = torch.zeros([self.inp_size])
         for i in tokenized_data["input_ids"]:
             returndat[i-1] = returndat[i-1] + 1
+        # print(returndat[1:].shape,self.inp_size)
+        # print(returndat)
         # tokenized_data.to(self.device)
-        return returndat[:-1].to(self.device), self.labeldict[event],idx, text
+        # print(text)
+        # print(idx)
+        # print(self.labeldict[event])
+        # input()
+        return returndat[1:].to(self.device), self.labeldict[event],idx, text
         
     def backref(self,idx):
         return self.data[idx], self.rootitems[idx],self.data[idx][2]

@@ -16,6 +16,14 @@ What this repo contains:
 Note that the tensorflow implementation prints the topic words first, then has to wait a few seconds to print the
 perplexity, as testing right now isn't parallelized.
 
+Also note that within the sample results provided (10_topic_hypernetwork and OriginalProdLDA), there is a vocab index fixer file present.
+This is due to the code that was used to run the experiments having an error in indexing for printing the top words.
+The running code has been fixed, but it's just left there as a record, since the older results needs that code to move it to the right indexes for printing.
+
+Finally, the actual dataset has 9 topics but we test on 10.
+We also run 80 epochs. (you don't need 80 epochs for the hypernetwork version actually. around 20 is also not going to improve performance.)
+
+
 # Running the code
 - Run it with pytorch_run.py.
     - The pytorch code has been upgraded to torch 1.10
@@ -49,4 +57,3 @@ Visualization with Tensorboard. Gives a better high-level overview. Note input i
 top.
 
 ![Tensorflow forward graph](tf_model.png)
-

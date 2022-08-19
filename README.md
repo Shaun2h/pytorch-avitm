@@ -1,4 +1,4 @@
-# Hijacked PyTorch Implementation of Autoencoding Variational Inference for Topic Models
+# PyTorch Implementation of Autoencoding Variational Inference for Topic Models
 Much of the code is adapted from the sourced pytorch repo there.
 
 [Original Paper](https://arxiv.org/abs/1703.01488). 
